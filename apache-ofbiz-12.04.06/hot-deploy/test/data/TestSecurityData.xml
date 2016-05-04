@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the Test Component." permissionId="TEST_VIEW"/>
+    <SecurityPermission description="Create operations in the Test Component." permissionId="TEST_CREATE"/>
+    <SecurityPermission description="Update operations in the Test Component." permissionId="TEST_UPDATE"/>
+    <SecurityPermission description="Delete operations in the Test Component." permissionId="TEST_DELETE"/>
+    <SecurityPermission description="ALL operations in the Test Component." permissionId="TEST_ADMIN"/>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="TEST_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="TEST_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="TEST_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="TEST_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="TEST_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="TEST_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="TEST_ADMIN"/>
+</entity-engine-xml>
