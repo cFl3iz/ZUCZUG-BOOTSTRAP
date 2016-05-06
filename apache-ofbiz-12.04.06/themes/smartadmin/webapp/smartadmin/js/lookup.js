@@ -26,9 +26,9 @@ function Lookup(date){
         $("#main").after(overlay);
     }
 
-    if(number != 0){
-        return ;
-    }
+    //if(number != 0){
+    //    return ;
+    //}
 
     var requestUrl = date['requestUrl'];
     var inputFieldId = date['inputFieldId'];
@@ -78,10 +78,10 @@ function Lookup(date){
 
         success: function (data) {
             //alert(divId);
-            //将获取过来的前面的菜单栏给去掉
+            //将获取过来的前面的菜单栏给去掉   10,34,10,29
             data = data.replace('id="main"',"");
             $("#"+divId).append(data);
-            jQuery("#" + divId + " section[id='widget-grid']").css("max-height","auto");
+            jQuery("#" + divId + " section[id='widget-grid']").css("max-height",(height-73)+"px");
             handle(divId);
         }
     });
@@ -107,10 +107,7 @@ function handle(divId){
     //将影藏和放大按钮删除掉
     jQuery("#" + divId + " a[data-original-title='Collapse']").remove();
     jQuery("#" + divId + " a[data-original-title='Fullscreen']").remove();
-    //给删除按钮加上点击时间，关闭弹出层
-    jQuery("#" + divId + " a[data-original-title='Delete']").click(function(){
-        closeLookUp();
-    });
+
     //设置所有弹出的 div 距离下方的距离
     jQuery("#" + divId + " article").css("margin-bottom","-14px");
     //给列表中的 lib 添加 css 样式
@@ -124,6 +121,13 @@ function handle(divId){
     jQuery("#" + divId + " section[id='widget-grid']").before(headerDiv);
 
     jQuery("#" + divId + " section[id='widget-grid']").css("overflow","auto");
+    var height = jQuery("#" + divId).height();
+    jQuery("#" + divId + " section[id='widget-grid']").css("max-height",(height-73)+"px");
+
+    //给删除按钮加上点击时间，关闭弹出层
+    jQuery("#" + divId + " a[data-original-title='Delete']").click(function(){
+        closeLookUp();
+    });
 
     //给 table 添加样式
     jQuery("#" + divId + " table").removeClass("basic-table").addClass("table-striped");
@@ -184,7 +188,7 @@ function queryIng(data,actions){
         data: data,
         success: function(result) {
             result = result.replace('id="main"',"");
-
+            result = result.replace(/submitPagination/g,'nextPageLookUp');
             $("#"+divId).empty();
             $("#"+divId).append(result);
             handle(divId);
@@ -197,4 +201,8 @@ function getValue(data){
     $("#" + inputFieldIdClick ).val(data);
     $("#" + inputFieldIdClick).css("background-color","yellow");
     closeLookUp();
+}
+
+function nextPageLookUp(val1,val2){
+    queryIng(null,val2);
 }
